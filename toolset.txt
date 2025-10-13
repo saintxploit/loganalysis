@@ -1,0 +1,33 @@
+🔧 Toolset inti (WAJIB)
+grep / egrep / zgrep — cari pola di file log.
+Contoh: grep -i "login failed" /var/log/auth.log
+
+awk / cut / sort / uniq -c — parsing kolom & menghitung frekuensi.
+Contoh: awk '{print $1,$4,$9}' access.log | sort | uniq -c | sort -nr | head
+
+tail / less / head — baca log cepat.
+tail -n 200 /var/log/nginx/access.log
+
+tcpdump — capture / filter pcap singkat (CLI).
+tcpdump -r sample.pcap -nn -tt
+
+tshark (CLI Wireshark) — filter & ekstrak field dari pcap.
+tshark -r sample.pcap -Y "http.request" -T fields -e ip.src -e http.host -e http.request.uri
+
+Wireshark (GUI) — inspect pcap, Follow TCP Stream, decode protocols.
+Use: Follow → TCP Stream; gunakan display filters seperti http, ssl, tcp.flags.reset == 1.
+
+strings — ekstrak teks dari binari atau pcap.
+strings dump.bin | grep -i "password"
+
+🧰 Toolset sangat berguna (disarankan)
+jq — parsing JSON (API logs).
+cat logs.json | jq '.message | select(.level=="error")'
+
+goaccess — analisa web access.log interaktif (CLI/HTML).
+grep + regex untuk SQLi/XSS (cari UNION, SELECT, ../, <script>).
+
+Zeek (Bro) — network analysis & log extraction (advanced lab).
+
+syslog / journalctl — baca systemd logs.
+journalctl -u nginx.service --since "1 hour ago"
