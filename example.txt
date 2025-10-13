@@ -1,0 +1,12 @@
+🧭 Contoh workflow cepat (soal praktikum)
+Buka dulu file (tail/less) untuk lihat format log.
+
+Cari kata kunci: grep -i "error\|failed\|unauthorized\|union\|select\|../\|<script>" access.log
+
+Hitung frekuensi IP: awk '{print $1}' access.log | sort | uniq -c | sort -nr | head
+
+Periksa user-agent / URI untuk pola serangan: awk '{print $12,$7}' access.log | grep -i "wp-login\|xmlrpc\|/admin\|/login"
+
+Jika pcap diberikan: buka di Wireshark → filter http / tcp.port==22 → Follow TCP Stream → lihat payload.
+
+Tulis temuan singkat: IP, waktu, indikator (SQLi, brute force, exploit fingerprint), rekomendasi mitigasi (block IP, patch, disable service, perkuat auth).
